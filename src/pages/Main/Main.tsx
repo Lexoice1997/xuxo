@@ -9,7 +9,9 @@ import {
   ToolOutlined,
 } from '@ant-design/icons';
 import { Button, Col, Row, Statistic } from 'antd';
+import { NavLink } from 'react-router-dom';
 import styles from './Main.module.scss';
+import { LOGIN_PAGE } from '../../routes/Routs';
 
 function Main() {
   return (
@@ -25,11 +27,11 @@ function Main() {
               style={{ color: 'white' }}
             />
             <Col className={styles.buttons}>
-              <Button style={{ marginTop: 16 }} type="primary">
+              <Button size="large" style={{ marginTop: 16 }} type="primary">
                 Рефералы
               </Button>
-              <Button style={{ marginTop: 16 }} type="primary">
-                Recharge
+              <Button size="large" style={{ marginTop: 16 }} type="primary">
+                <NavLink to={`${LOGIN_PAGE}`}>Log In</NavLink>
               </Button>
             </Col>
           </Col>

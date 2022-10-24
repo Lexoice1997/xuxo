@@ -26,6 +26,7 @@ function Login() {
       name="horizontal_login"
       layout="vertical"
       onFinish={onFinish}
+      size="large"
       labelCol={{
         xs: { span: 12, offset: 0 },
         sm: { span: 16, offset: 4 },
@@ -72,6 +73,7 @@ function Login() {
           <Button
             type="primary"
             htmlType="submit"
+            style={{ width: '100%' }}
             disabled={
               !form.isFieldsTouched(true) ||
               !!form.getFieldsError().filter(({ errors }) => errors.length).length
