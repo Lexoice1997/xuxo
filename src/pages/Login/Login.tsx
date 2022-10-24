@@ -1,6 +1,6 @@
 import { Button, Form, Grid, Input } from 'antd';
 import { useEffect, useState } from 'react';
-// import styles from './Login.module.scss';
+import styles from './Login.module.scss';
 
 const { useBreakpoint } = Grid;
 
@@ -28,7 +28,7 @@ function Login() {
       onFinish={onFinish}
       labelCol={{
         xs: { span: 12, offset: 0 },
-        sm: { span: 12, offset: 6 },
+        sm: { span: 16, offset: 4 },
         md: { span: 12, offset: 6 },
         lg: { span: 8, offset: 8 },
         xl: { span: 8, offset: 8 },
@@ -36,13 +36,13 @@ function Login() {
       }}
       wrapperCol={{
         xs: { span: 12, offset: 0 },
-        sm: { span: 12, offset: 6 },
+        sm: { span: 16, offset: 4 },
         md: { span: 12, offset: 6 },
         lg: { span: 8, offset: 8 },
         xl: { span: 8, offset: 8 },
         xxl: { span: 8, offset: 8 },
       }}
-      // className={styles.login}
+      className={styles.login}
     >
       <Form.Item
         name="phone"

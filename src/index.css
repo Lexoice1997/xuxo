@@ -1,0 +1,12 @@
+@import '~antd/dist/antd.css';
+@import url('./styles/_fonts.scss');
+
+body {
+  font-family: 'Gilroy';
+}
+
+.ant-statistic-title {
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255);
+  font-size: 14px;
+}
