@@ -16,6 +16,8 @@ function SignUp() {
     console.log('Finish:', values);
   };
 
+  console.log('asdasd');
+
   return (
     <Form
       form={form}
