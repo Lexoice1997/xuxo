@@ -14,17 +14,28 @@ import styles from './Main.module.scss';
 import { CONFIRMATION_PAGE, LOGIN_PAGE } from '../../routes/Routs';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { useEffect } from 'react';
+import { authSlice } from '../../store/slices/AuthSlice';
 
 function Main() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, isUserLogin, isLoading, error } = useAppSelector((state) => state.authReducer);
+  const { user, token, isUserLogin, isLoading, error } = useAppSelector(
+    (state) => state.authReducer
+  );
+  const { logout } = authSlice.actions;
 
   useEffect(() => {
-    if (!user?.isActivated) {
-      navigate(`${CONFIRMATION_PAGE}`);
+    if (!localStorage.getItem('token')) {
+      navigate(`${LOGIN_PAGE}`);
+      console.log('login');
+      console.log(token);
+    } else {
+      if (!user?.isActivated) {
+        navigate(`${CONFIRMATION_PAGE}`);
+        console.log('confirm');
+      }
     }
-  }, [navigate, user?.isActivated]);
+  }, [navigate, token, user?.isActivated]);
 
   return (
     <div>
@@ -42,7 +53,12 @@ function Main() {
               <Button size="large" style={{ marginTop: 16 }} type="primary">
                 Рефералы
               </Button>
-              <Button size="large" style={{ marginTop: 16 }} type="primary">
+              <Button
+                size="large"
+                style={{ marginTop: 16 }}
+                type="primary"
+                onClick={() => dispatch(logout())}
+              >
                 <NavLink to={`${LOGIN_PAGE}`}>Log In</NavLink>
               </Button>
             </Col>

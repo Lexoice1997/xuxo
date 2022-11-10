@@ -1,9 +1,10 @@
-import { Button, DatePicker, Form, Input } from 'antd';
+import { Button, DatePicker, Form, Input, message } from 'antd';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { LOGIN_PAGE } from '../../routes/Routs';
+import { authSlice } from '../../store/slices/AuthSlice';
 import { IRegistrationProps, postRegistration } from '../../store/thunks/authThunk';
 import styles from './SignUp.module.scss';
 
@@ -11,16 +12,25 @@ function SignUp() {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, isUserLogin, isLoading, error } = useAppSelector((state) => state.authReducer);
+  const { user, isUserLogin, isRegistered, isLoading, error } = useAppSelector(
+    (state) => state.authReducer
+  );
+  console.log(isRegistered);
 
   useEffect(() => {
-    if (user) {
+    if (isRegistered) {
       navigate(`${LOGIN_PAGE}`);
     }
-  }, [navigate, user]);
+  }, [isRegistered, navigate]);
 
-  const onFinish = (values: IRegistrationProps) => {
-    dispatch(postRegistration(values));
+  const onFinish = async (values: IRegistrationProps) => {
+    await dispatch(postRegistration(values));
+
+    if (isRegistered) {
+      navigate(`${LOGIN_PAGE}`);
+    } else {
+      message.error('Неверные данные');
+    }
   };
 
   return (
@@ -119,7 +129,7 @@ function SignUp() {
       </Form.Item>
 
       <Form.Item shouldUpdate>
-        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+        <Button type="primary" htmlType="submit" style={{ width: '100%' }} loading={isLoading}>
           Вход
         </Button>
       </Form.Item>

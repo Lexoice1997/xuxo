@@ -17,17 +17,16 @@ export interface IRegistrationProps {
 }
 
 export const postRegistration = createAsyncThunk(
-  'login/postLogin',
+  'registration/postRegistration',
   async (registrationProps: IRegistrationProps, thunkAPI) => {
     try {
       const { data } = await $host.post<ILogin>('auth/register', {
         ...registrationProps,
         birthday: dayjs(registrationProps.birthday).format('YYYY-MM-DD'),
       });
-      localStorage.setItem('token', data.token);
       return data;
     } catch (e) {
-      return e;
+      return thunkAPI.rejectWithValue('Не удалось загрузить пользователей');
     }
   }
 );

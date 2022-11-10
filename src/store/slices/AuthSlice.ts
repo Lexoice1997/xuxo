@@ -7,6 +7,7 @@ interface IAuthState {
   user: ILogin | null;
   token: string | null | undefined;
   isUserLogin: boolean;
+  isRegistered: boolean;
   isLoading: boolean;
   error: string | null;
 }
@@ -15,6 +16,7 @@ const initialState: IAuthState = {
   user: null,
   token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
   isUserLogin: false,
+  isRegistered: false,
   isLoading: false,
   error: '',
 };
@@ -27,8 +29,21 @@ export const authSlice = createSlice({
       state.isUserLogin = false;
       localStorage.removeItem('token');
     },
+    handleActivate(state) {
+      state.user!.isActivated = true;
+    },
+    handleRegisteredReset(state) {
+      state.isRegistered = false;
+    },
   },
   extraReducers: {
+    [postRegistration.fulfilled.type]: (state, action: PayloadAction<ILogin>) => {
+      // state.user = action.payload;
+      // state.isUserLogin = true;
+      state.isRegistered = true;
+      state.error = '';
+      state.isLoading = false;
+    },
     [postRegistration.pending.type]: (state) => {
       state.isLoading = true;
     },

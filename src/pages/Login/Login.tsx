@@ -1,28 +1,37 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { MAIN_PAGE, SIGNUP_PAGE } from '../../routes/Routs';
+import { authSlice } from '../../store/slices/AuthSlice';
 import { ILoginProps, postLogin } from '../../store/thunks/authThunk';
 import styles from './Login.module.scss';
 
 function Login() {
   const [form] = Form.useForm();
-  const [, forceUpdate] = useState({});
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, isUserLogin, isLoading, error } = useAppSelector((state) => state.authReducer);
-
-  if (user) {
-    navigate(`${MAIN_PAGE}`);
-  }
+  const { user, token, isRegistered, isUserLogin, isLoading, error } = useAppSelector(
+    (state) => state.authReducer
+  );
+  const { handleRegisteredReset } = authSlice.actions;
 
   useEffect(() => {
-    forceUpdate({});
+    dispatch(handleRegisteredReset());
   }, []);
 
-  const onFinish = (values: ILoginProps) => {
-    dispatch(postLogin({ phone: values.phone, password: values.password }));
+  useEffect(() => {
+    if (isUserLogin) {
+      navigate(`${MAIN_PAGE}`);
+    }
+  }, [isUserLogin, navigate, user]);
+
+  const onFinish = async (values: ILoginProps) => {
+    await dispatch(postLogin({ phone: values.phone, password: values.password }));
+
+    if (!isUserLogin) {
+      message.error('Неверные пароль или логин');
+    }
   };
 
   return (
@@ -74,19 +83,9 @@ function Login() {
           <Input.Password />
         </Form.Item>
         <Form.Item shouldUpdate>
-          {() => (
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ width: '100%' }}
-              disabled={
-                !form.isFieldsTouched(true) ||
-                !!form.getFieldsError().filter(({ errors }) => errors.length).length
-              }
-            >
-              Вход
-            </Button>
-          )}
+          <Button type="primary" htmlType="submit" style={{ width: '100%' }} loading={isLoading}>
+            Вход
+          </Button>
         </Form.Item>
         <Form.Item>
           <NavLink to={`${SIGNUP_PAGE}`}>Регистрация</NavLink>
