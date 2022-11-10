@@ -1,22 +1,27 @@
 import { Button, DatePicker, Form, Input } from 'antd';
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { LOGIN_PAGE } from '../../routes/Routs';
+import { IRegistrationProps, postRegistration } from '../../store/thunks/authThunk';
 import styles from './SignUp.module.scss';
 
 function SignUp() {
   const [form] = Form.useForm();
-  const [, forceUpdate] = useState({});
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { user, isUserLogin, isLoading, error } = useAppSelector((state) => state.authReducer);
 
   useEffect(() => {
-    forceUpdate({});
-  }, []);
+    if (user) {
+      navigate(`${LOGIN_PAGE}`);
+    }
+  }, [navigate, user]);
 
-  const onFinish = (values: any) => {
-    console.log('Finish:', values);
+  const onFinish = (values: IRegistrationProps) => {
+    dispatch(postRegistration(values));
   };
-
-  console.log('asdasd');
 
   return (
     <Form
@@ -44,28 +49,47 @@ function SignUp() {
       className={styles.signUp}
     >
       <Form.Item
-        name="name"
+        name="firstname"
         label="Имя"
         rules={[{ required: true, message: 'Пожалуйста напишите своё имя!' }]}
       >
         <Input style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
-        name="surname"
+        name="lastname"
         label="Фамилия"
         rules={[{ required: true, message: 'Пожалуйста напишите свою фамилию!' }]}
       >
         <Input style={{ width: '100%' }} />
       </Form.Item>
+      <Form.Item name="patronymic" label="Отчество">
+        <Input style={{ width: '100%' }} />
+      </Form.Item>
       <Form.Item
-        name="patronymic"
-        label="Отчество"
-        rules={[{ required: true, message: 'Пожалуйста напишите своё отчество!' }]}
+        name="phone"
+        label="Телефон номер"
+        rules={[
+          { required: true, message: 'Пожалуйста напишите свой номер!' },
+          { whitespace: true },
+          { min: 12, message: 'Номер должен быть не меньше 12 символов' },
+          { max: 12, message: 'Номер должен быть не больше 12 символов' },
+        ]}
       >
         <Input style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
-        name="date"
+        name="password"
+        rules={[
+          { required: true, message: 'Пожалуйста напишите свой пароль!' },
+          { whitespace: true },
+          { min: 8, message: 'Номер должен быть не меньше 8 символов' },
+        ]}
+        label="Пароль"
+      >
+        <Input.Password />
+      </Form.Item>
+      <Form.Item
+        name="birthday"
         label="Дата рождения"
         rules={[{ required: true, message: 'Пожалуйста укажите свой день рождения!' }]}
         style={{ width: '100%' }}
@@ -80,7 +104,7 @@ function SignUp() {
         <Input style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
-        name="PINFL"
+        name="pinfl"
         label="ПИНФЛ"
         rules={[
           { required: true, message: 'Пожалуйста напишите своё ПИНФЛ!' },
@@ -90,44 +114,14 @@ function SignUp() {
       >
         <Input style={{ width: '100%' }} />
       </Form.Item>
-      <Form.Item
-        name="phone"
-        label="Телефон номер"
-        rules={[
-          { required: true, message: 'Пожалуйста напишите свой номер!' },
-          { whitespace: true },
-          { min: 9, message: 'Номер должен быть не меньше 9 символов' },
-          { max: 9, message: 'Номер должен быть не больше 9 символов' },
-        ]}
-      >
-        <Input addonBefore="+998" style={{ width: '100%' }} />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          { required: true, message: 'Пожалуйста напишите свой пароль!' },
-          { whitespace: true },
-          { min: 8, message: 'Номер должен быть не меньше 8 символов' },
-        ]}
-        label="Пароль"
-      >
-        <Input.Password />
+      <Form.Item name="refCode" label="Реферальный код">
+        <Input style={{ width: '100%' }} />
       </Form.Item>
 
       <Form.Item shouldUpdate>
-        {() => (
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ width: '100%' }}
-            disabled={
-              !form.isFieldsTouched(true) ||
-              !!form.getFieldsError().filter(({ errors }) => errors.length).length
-            }
-          >
-            Вход
-          </Button>
-        )}
+        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+          Вход
+        </Button>
       </Form.Item>
       <Form.Item>
         <NavLink to={`${LOGIN_PAGE}`}>Логин</NavLink>

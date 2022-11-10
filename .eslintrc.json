@@ -5,7 +5,6 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "prettier",
-    "airbnb",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "plugin:react/jsx-runtime"
@@ -35,10 +34,7 @@
     "@typescript-eslint/no-var-requires": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "no-console": "warn",
     "@typescript-eslint/no-inferrable-types": "off",
     "import/extensions": [

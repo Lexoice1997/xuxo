@@ -9,11 +9,23 @@ import {
   ToolOutlined,
 } from '@ant-design/icons';
 import { Button, Col, Row, Statistic } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Main.module.scss';
-import { LOGIN_PAGE } from '../../routes/Routs';
+import { CONFIRMATION_PAGE, LOGIN_PAGE } from '../../routes/Routs';
+import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
+import { useEffect } from 'react';
 
 function Main() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { user, isUserLogin, isLoading, error } = useAppSelector((state) => state.authReducer);
+
+  useEffect(() => {
+    if (!user?.isActivated) {
+      navigate(`${CONFIRMATION_PAGE}`);
+    }
+  }, [navigate, user?.isActivated]);
+
   return (
     <div>
       <div className={styles.header}>

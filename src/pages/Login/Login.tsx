@@ -1,19 +1,28 @@
 import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { SIGNUP_PAGE } from '../../routes/Routs';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
+import { MAIN_PAGE, SIGNUP_PAGE } from '../../routes/Routs';
+import { ILoginProps, postLogin } from '../../store/thunks/authThunk';
 import styles from './Login.module.scss';
 
 function Login() {
   const [form] = Form.useForm();
   const [, forceUpdate] = useState({});
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { user, isUserLogin, isLoading, error } = useAppSelector((state) => state.authReducer);
+
+  if (user) {
+    navigate(`${MAIN_PAGE}`);
+  }
 
   useEffect(() => {
     forceUpdate({});
   }, []);
 
-  const onFinish = (values: any) => {
-    console.log('Finish:', values);
+  const onFinish = (values: ILoginProps) => {
+    dispatch(postLogin({ phone: values.phone, password: values.password }));
   };
 
   return (
@@ -47,11 +56,11 @@ function Login() {
           rules={[
             { required: true, message: 'Пожалуйста напишите свой номер!' },
             { whitespace: true },
-            { min: 9, message: 'Номер должен быть не меньше 9 символов' },
-            { max: 9, message: 'Номер должен быть не больше 9 символов' },
+            { min: 12, message: 'Номер должен быть не меньше 12 символов' },
+            { max: 12, message: 'Номер должен быть не больше 12 символов' },
           ]}
         >
-          <Input addonBefore="+998" style={{ width: '100%' }} />
+          <Input style={{ width: '100%' }} />
         </Form.Item>
         <Form.Item
           name="password"
