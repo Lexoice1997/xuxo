@@ -8,6 +8,7 @@ interface IAuthState {
   token: string | null | undefined;
   isUserLogin: boolean;
   isRegistered: boolean;
+  isErrorMessage: boolean;
   isLoading: boolean;
   error: string | null;
 }
@@ -17,6 +18,7 @@ const initialState: IAuthState = {
   token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
   isUserLogin: false,
   isRegistered: false,
+  isErrorMessage: true,
   isLoading: false,
   error: '',
 };
@@ -49,7 +51,7 @@ export const authSlice = createSlice({
     },
     [postRegistration.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
-      // state.error = action.payload;
+      state.error = action.payload;
     },
     [postLogin.fulfilled.type]: (state, action: PayloadAction<ILogin>) => {
       state.user = action.payload;
@@ -62,6 +64,7 @@ export const authSlice = createSlice({
     },
     [postLogin.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
+      state.isErrorMessage = false;
       // state.error = action.payload;
     },
   },

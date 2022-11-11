@@ -1,9 +1,14 @@
 .login {
-  background-color: antiquewhite;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   background-color: #f1f4fa;
   padding: 20px;
+
+  h1 {
+    text-align: center;
+  }
+  .loginForm {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 }

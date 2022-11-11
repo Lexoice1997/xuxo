@@ -10,8 +10,7 @@ const $authHost = axios.create({
 });
 
 $authHost.interceptors.request.use((config: AxiosRequestConfig) => {
-  // eslint-disable-next-line no-param-reassign
-  (config.headers as AxiosRequestHeaders).authorization = `Bearer ${localStorage.getItem('token')}`;
+  (config.headers as AxiosRequestHeaders).Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 });
 

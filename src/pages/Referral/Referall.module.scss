@@ -1,0 +1,27 @@
+.referral {
+  height: 100vh;
+
+  .header {
+    color: white;
+    background-color: #0063f5;
+    padding: 20px;
+    height: 150px;
+
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      color: white;
+    }
+
+    h3 {
+      color: white;
+      margin: 0;
+    }
+  }
+
+  .tree {
+    height: calc(100vh - 150px);
+  }
+}

@@ -11,9 +11,8 @@ function Login() {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, token, isRegistered, isUserLogin, isLoading, error } = useAppSelector(
-    (state) => state.authReducer
-  );
+  const { user, token, isRegistered, isUserLogin, isErrorMessage, isLoading, error } =
+    useAppSelector((state) => state.authReducer);
   const { handleRegisteredReset } = authSlice.actions;
 
   useEffect(() => {
@@ -29,19 +28,25 @@ function Login() {
   const onFinish = async (values: ILoginProps) => {
     await dispatch(postLogin({ phone: values.phone, password: values.password }));
 
-    if (!isUserLogin) {
+    if (isErrorMessage) {
       message.error('Неверные пароль или логин');
+      console.log(isUserLogin);
     }
   };
 
+  const onFinishFailed = () => {};
+
   return (
     <div className={styles.login}>
+      <h1>XUXO</h1>
       <Form
         form={form}
         name="horizontal_login"
         layout="vertical"
         onFinish={onFinish}
+        onFinishFailed={() => message.error('Неверные пароль или логин')}
         size="large"
+        className={styles.loginForm}
         labelCol={{
           xs: { span: 12, offset: 0 },
           sm: { span: 16, offset: 4 },

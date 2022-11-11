@@ -11,7 +11,7 @@ import {
 import { Button, Col, Row, Statistic } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Main.module.scss';
-import { CONFIRMATION_PAGE, LOGIN_PAGE } from '../../routes/Routs';
+import { CONFIRMATION_PAGE, LOGIN_PAGE, REFERRAL_PAGE } from '../../routes/Routs';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { useEffect } from 'react';
 import { authSlice } from '../../store/slices/AuthSlice';
@@ -27,12 +27,9 @@ function Main() {
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate(`${LOGIN_PAGE}`);
-      console.log('login');
-      console.log(token);
     } else {
       if (!user?.isActivated) {
         navigate(`${CONFIRMATION_PAGE}`);
-        console.log('confirm');
       }
     }
   }, [navigate, token, user?.isActivated]);
@@ -44,14 +41,14 @@ function Main() {
           <Col span={24}>
             <Statistic
               title="Account Balance (SUM)"
-              value={112893}
+              value={user?.balance}
               precision={2}
               valueStyle={{ color: 'white' }}
               style={{ color: 'white' }}
             />
             <Col className={styles.buttons}>
               <Button size="large" style={{ marginTop: 16 }} type="primary">
-                Рефералы
+                <NavLink to={`${REFERRAL_PAGE}`}>Рефералы</NavLink>
               </Button>
               <Button
                 size="large"
