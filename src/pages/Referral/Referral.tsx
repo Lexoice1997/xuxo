@@ -10,8 +10,6 @@ function Referral() {
   const { user } = useAppSelector((state) => state.authReducer);
   const { tree } = useAppSelector((state) => state.treeReducer);
 
-  console.log(user);
-
   useEffect(() => {
     dispatch(fetchTree(user?.id));
   }, [dispatch, user?.id]);
