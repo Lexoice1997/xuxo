@@ -7,8 +7,7 @@ interface IAuthState {
   user: ILogin | null;
   token: string | null | undefined;
   isUserLogin: boolean;
-  isRegistered: boolean;
-  isErrorMessage: boolean;
+  pendingError: 'wait' | 'success' | 'error';
   isLoading: boolean;
   error: string | null;
 }
@@ -17,8 +16,7 @@ const initialState: IAuthState = {
   user: null,
   token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
   isUserLogin: false,
-  isRegistered: false,
-  isErrorMessage: true,
+  pendingError: 'wait',
   isLoading: false,
   error: '',
 };
@@ -34,15 +32,15 @@ export const authSlice = createSlice({
     handleActivate(state) {
       state.user!.isActivated = true;
     },
-    handleRegisteredReset(state) {
-      state.isRegistered = false;
+    handlePendingError(state, action: PayloadAction<'wait' | 'success' | 'error'>) {
+      state.pendingError = action.payload;
     },
   },
   extraReducers: {
     [postRegistration.fulfilled.type]: (state, action: PayloadAction<ILogin>) => {
       // state.user = action.payload;
       // state.isUserLogin = true;
-      state.isRegistered = true;
+      state.pendingError = 'success';
       state.error = '';
       state.isLoading = false;
     },
@@ -51,10 +49,12 @@ export const authSlice = createSlice({
     },
     [postRegistration.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
+      state.pendingError = 'error';
       state.error = action.payload;
     },
     [postLogin.fulfilled.type]: (state, action: PayloadAction<ILogin>) => {
       state.user = action.payload;
+      state.pendingError = 'success';
       state.isUserLogin = true;
       state.error = '';
       state.isLoading = false;
@@ -64,7 +64,7 @@ export const authSlice = createSlice({
     },
     [postLogin.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.isErrorMessage = false;
+      state.pendingError = 'error';
       // state.error = action.payload;
     },
   },

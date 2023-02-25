@@ -12,7 +12,7 @@ export interface IRegistrationProps {
   phone: string;
   password: string;
   patronymic?: string | null;
-  refcode?: number | null;
+  refCode?: number | null;
   role?: string;
 }
 
@@ -23,6 +23,7 @@ export const postRegistration = createAsyncThunk(
       const { data } = await $host.post<ILogin>('auth/register', {
         ...registrationProps,
         birthday: dayjs(registrationProps.birthday).format('YYYY-MM-DD'),
+        refCode: Number(registrationProps.refCode),
       });
       return data;
     } catch (e) {

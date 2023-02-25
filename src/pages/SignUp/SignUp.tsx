@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { LOGIN_PAGE } from '../../routes/Routs';
+import { authSlice } from '../../store/slices/AuthSlice';
 import { IRegistrationProps, postRegistration } from '../../store/thunks/authThunk';
 import styles from './SignUp.module.scss';
 
@@ -10,26 +11,24 @@ function SignUp() {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, isUserLogin, isRegistered, isLoading, error } = useAppSelector(
-    (state) => state.authReducer
-  );
-  console.log(isRegistered);
-
-  useEffect(() => {
-    if (isRegistered) {
-      navigate(`${LOGIN_PAGE}`);
-    }
-  }, [isRegistered, navigate]);
+  const { pendingError, isLoading } = useAppSelector((state) => state.authReducer);
+  const { handlePendingError } = authSlice.actions;
 
   const onFinish = async (values: IRegistrationProps) => {
     await dispatch(postRegistration(values));
+  };
 
-    if (isRegistered) {
+  useEffect(() => {
+    if (pendingError === 'success') {
       navigate(`${LOGIN_PAGE}`);
-    } else {
+    } else if (pendingError === 'error') {
       message.error('Неверные данные');
     }
-  };
+
+    return () => {
+      dispatch(handlePendingError('wait'));
+    };
+  }, [pendingError, navigate, dispatch, handlePendingError]);
 
   return (
     <div className={styles.signUp}>
@@ -85,7 +84,7 @@ function SignUp() {
             { max: 12, message: 'Номер должен быть не больше 12 символов' },
           ]}
         >
-          <Input style={{ width: '100%' }} />
+          <Input style={{ width: '100%' }} type="number" />
         </Form.Item>
         <Form.Item
           name="password"
@@ -122,15 +121,15 @@ function SignUp() {
             { max: 14, message: 'ПИНФЛ должен быть не больше 14 символов' },
           ]}
         >
-          <Input style={{ width: '100%' }} />
+          <Input style={{ width: '100%' }} type="number" />
         </Form.Item>
         <Form.Item name="refCode" label="Реферальный код">
-          <Input style={{ width: '100%' }} />
+          <Input style={{ width: '100%' }} type="number" />
         </Form.Item>
 
         <Form.Item shouldUpdate>
           <Button type="primary" htmlType="submit" style={{ width: '100%' }} loading={isLoading}>
-            Вход
+            Регистрация
           </Button>
         </Form.Item>
         <Form.Item>

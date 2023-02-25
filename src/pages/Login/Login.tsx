@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { MAIN_PAGE, SIGNUP_PAGE } from '../../routes/Routs';
@@ -11,30 +11,30 @@ function Login() {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, token, isRegistered, isUserLogin, isErrorMessage, isLoading, error } =
-    useAppSelector((state) => state.authReducer);
-  const { handleRegisteredReset } = authSlice.actions;
+  const { user, isUserLogin, pendingError, isLoading } = useAppSelector(
+    (state) => state.authReducer
+  );
+  const { handlePendingError } = authSlice.actions;
 
-  useEffect(() => {
-    dispatch(handleRegisteredReset());
-  }, []);
+  const onFinish = (values: ILoginProps) => {
+    dispatch(postLogin({ phone: values.phone, password: values.password }));
+  };
 
   useEffect(() => {
     if (isUserLogin) {
       navigate(`${MAIN_PAGE}`);
     }
-  }, [isUserLogin, navigate, user]);
 
-  const onFinish = async (values: ILoginProps) => {
-    await dispatch(postLogin({ phone: values.phone, password: values.password }));
+    return () => {
+      dispatch(handlePendingError('wait'));
+    };
+  }, [dispatch, handlePendingError, isUserLogin, navigate, user]);
 
-    if (isErrorMessage) {
+  useEffect(() => {
+    if (pendingError === 'error') {
       message.error('Неверные пароль или логин');
-      console.log(isUserLogin);
     }
-  };
-
-  const onFinishFailed = () => {};
+  }, [pendingError]);
 
   return (
     <div className={styles.login}>

@@ -1,17 +1,18 @@
 export interface ILogin {
+  id: number;
   firstname: string;
   lastname: string;
   address: string;
+  birthday: string;
   pinfl: number;
   phone: number;
   patronymic: string | null;
   refcode: number | null;
-  id: number;
   refCounts: number;
   refs: number[];
   balance: number;
   isActivated: boolean;
   status: string;
-  role: string;
+  roles: string[];
   token: string;
 }

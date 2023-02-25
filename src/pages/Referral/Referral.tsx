@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Tree from 'react-d3-tree';
+import BackBtn from '../../components/BackBtn/BackBtn';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { fetchTree } from '../../store/thunks/treeThunk';
 import styles from './Referall.module.scss';
@@ -9,6 +10,8 @@ function Referral() {
   const { user } = useAppSelector((state) => state.authReducer);
   const { tree } = useAppSelector((state) => state.treeReducer);
 
+  console.log(user);
+
   useEffect(() => {
     dispatch(fetchTree(user?.id));
   }, [dispatch, user?.id]);
@@ -16,13 +19,16 @@ function Referral() {
   return (
     <div id="treeWrapper" className={styles.referral}>
       <div className={styles.header}>
-        <div>
-          <p>Ваш баланс</p>
-          <h2>{user?.balance}</h2>
-        </div>
-        <div>
-          <h3>Реферальная система</h3>
-          <p>Статус: {user?.status}</p>
+        <BackBtn />
+        <div className={styles.info}>
+          <div>
+            <p>Ваш баланс</p>
+            <h2>{user?.balance}</h2>
+          </div>
+          <div>
+            <h3>Реферальная система</h3>
+            <p>Статус: {user?.status}</p>
+          </div>
         </div>
       </div>
       <div className={styles.tree}>
