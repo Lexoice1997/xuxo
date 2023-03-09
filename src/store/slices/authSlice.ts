@@ -49,7 +49,7 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: {
-    [postRegistration.fulfilled.type]: (state, action: PayloadAction<ILogin>) => {
+    [postRegistration.fulfilled.type]: (state) => {
       state.pendingError = 'success';
       state.error = '';
       state.isLoading = false;
