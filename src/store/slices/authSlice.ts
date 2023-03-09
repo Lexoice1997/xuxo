@@ -31,15 +31,20 @@ export const authSlice = createSlice({
       localStorage.removeItem('token');
     },
     handleActivate(state) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       state.user!.isActive = 1;
     },
     handlePendingError(state, action: PayloadAction<'wait' | 'success' | 'error'>) {
       state.pendingError = action.payload;
     },
     setUpdateUser(state, action: PayloadAction<IUpdateUser>) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       state.user!.first_name = action.payload.first_name;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       state.user!.last_name = action.payload.last_name;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       state.user!.card_number = action.payload.card_number;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       state.user!.expiration_date = action.payload.expiration_date;
     },
   },

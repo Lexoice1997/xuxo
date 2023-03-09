@@ -46,7 +46,7 @@ const UpdateUser = () => {
       card_number: user?.card_number,
       expiration_date: user?.expiration_date,
     });
-  }, []);
+  }, [form, user?.card_number, user?.expiration_date, user?.first_name, user?.last_name]);
 
   return (
     <>

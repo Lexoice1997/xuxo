@@ -34,7 +34,7 @@ const CashOrder = () => {
     );
     dispatch(createAmoute({ amoute: values.amoute }))
       .unwrap()
-      .then((_) => handleCancel())
+      .then(() => handleCancel())
       .catch((rejectedValueOrSerializedError) => {
         messageApi.error(rejectedValueOrSerializedError.message[0]);
       });
@@ -43,7 +43,7 @@ const CashOrder = () => {
   const onFinishAmoute = async (values: { amoute: number }) => {
     dispatch(createAmoute({ amoute: values.amoute }))
       .unwrap()
-      .then((_) => handleCancel())
+      .then(() => handleCancel())
       .catch((rejectedValueOrSerializedError) => {
         messageApi.error(rejectedValueOrSerializedError.message[0]);
       });
