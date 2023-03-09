@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import {
   ACCAUNT_PAGE,
+  ADMIN_PAGE,
   CONCLUSION_PAGE,
   CONFIRMATION_PAGE,
   LOGIN_PAGE,
@@ -47,6 +48,13 @@ function Main() {
               <Button size="large" style={{ marginTop: 16 }} type="primary">
                 <NavLink to={`${ACCAUNT_PAGE}`}>Аккаунт</NavLink>
               </Button>
+              {user?.role === 'Admin' ? (
+                <Button size="large" style={{ marginTop: 16 }} type="primary">
+                  <NavLink to={`${ADMIN_PAGE}`}>Админ</NavLink>
+                </Button>
+              ) : (
+                ''
+              )}
             </Col>
           </Col>
         </Row>
