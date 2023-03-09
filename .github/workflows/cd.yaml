@@ -21,6 +21,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ftp.kvartirabar.uz
-        username: frontend@fff.kvartirabar.uz
+        server: ftp.xuxo.uz
+        username: frontend@xuxo.uz
         password: ${{ secrets.PASSWORD }}
