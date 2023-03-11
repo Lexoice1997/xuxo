@@ -55,7 +55,6 @@ function SignUp() {
           xl: { span: 8, offset: 8 },
           xxl: { span: 8, offset: 8 },
         }}
-        className={styles.signUp}
       >
         <Form.Item
           name="first_name"

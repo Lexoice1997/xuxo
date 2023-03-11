@@ -9,7 +9,7 @@ import styles from './Main.module.scss';
 function Main() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { user, isUserLogin } = useAppSelector((state) => state.authReducer);
+  const { user } = useAppSelector((state) => state.authReducer);
   const { services, isLoading } = useAppSelector((state) => state.servicesReducer);
 
   useEffect(() => {
