@@ -55,11 +55,7 @@ const NewUsers = () => {
       dataIndex: 'status',
       key: 'status',
     },
-    {
-      title: 'Актив',
-      dataIndex: 'isActive',
-      key: 'isActive',
-    },
+
     {
       title: 'Действия',
       dataIndex: '',
@@ -67,7 +63,7 @@ const NewUsers = () => {
       width: '15%',
       render: (_, record) => (
         <div key={record.id}>
-          <ActivateContent id={record.id} active={1} />
+          <ActivateContent id={record.id} active={1} action="Activate" />
         </div>
       ),
     },

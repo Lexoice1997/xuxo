@@ -59,7 +59,7 @@ function Accaunt() {
             className={styles.logout}
             onClick={() => {
               dispatch(logout());
-              navigate('/');
+              navigate('/login');
             }}
           >
             <LogoutOutlined style={{ marginRight: '20px' }} /> <span>Выход</span>

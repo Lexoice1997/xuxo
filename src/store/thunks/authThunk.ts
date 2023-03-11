@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { $authHost, $host } from '../../helpers/http';
-import { ILogin } from '../../types/IAuth';
+import { ILogin, ILoginData } from '../../types/IAuth';
 import { IResponse } from './../../types/index';
 
 export interface IRegistrationProps {
@@ -49,6 +49,8 @@ export const postLogin = createAsyncThunk(
         password,
       });
       localStorage.setItem('token', data.payload.token);
+      localStorage.setItem('isActive', data.payload.user.isActive as unknown as string);
+      localStorage.setItem('role', data.payload.user.role as unknown as string);
       return data.payload;
     } catch (e) {
       return thunkAPI.rejectWithValue('Не удалось загрузить пользователей');
@@ -58,8 +60,8 @@ export const postLogin = createAsyncThunk(
 
 export const checkLogin = createAsyncThunk('check/checkLogin', async (_, thunkAPI) => {
   try {
-    const { data } = await $authHost.get<ILogin>('check');
-    return data;
+    const { data } = await $authHost.get<IResponse<ILoginData>>('user/profile');
+    return data.payload;
   } catch (e) {
     return thunkAPI.rejectWithValue('Не удалось загрузить пользователей');
   }

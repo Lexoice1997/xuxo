@@ -1,3 +1,4 @@
+import { withErrorBoundary } from 'react-error-boundary';
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import RequireAuth from '../components/RequireAuth/RequireAuth';
@@ -60,4 +61,4 @@ function Routs() {
   );
 }
 
-export default Routs;
+export default withErrorBoundary(Routs, { fallback: <ErrorPage /> });

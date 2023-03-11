@@ -1,6 +1,8 @@
 import { Button, Form, Input, message, Modal } from 'antd';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
+import { setBalance } from '../../store/slices/authSlice';
+import { setCount } from '../../store/slices/paymentsSlice';
 import { createAmoute } from '../../store/thunks/paymentsThunk';
 import { updateUser } from './../../store/thunks/usersThunk';
 
@@ -38,15 +40,20 @@ const CashOrder = () => {
       .catch((rejectedValueOrSerializedError) => {
         messageApi.error(rejectedValueOrSerializedError.message[0]);
       });
+
+    dispatch(setCount());
+    dispatch(setBalance(values.amoute));
   };
 
   const onFinishAmoute = async (values: { amoute: number }) => {
-    dispatch(createAmoute({ amoute: values.amoute }))
+    await dispatch(createAmoute({ amoute: values.amoute }))
       .unwrap()
       .then(() => handleCancel())
       .catch((rejectedValueOrSerializedError) => {
         messageApi.error(rejectedValueOrSerializedError.message[0]);
       });
+    dispatch(setCount());
+    dispatch(setBalance(values.amoute));
   };
   return (
     <>

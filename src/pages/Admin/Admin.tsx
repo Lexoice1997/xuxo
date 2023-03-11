@@ -2,13 +2,14 @@ import { AndroidOutlined, LineChartOutlined, UserOutlined } from '@ant-design/ic
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   NEW_USERS_PAGE,
   PAYMENTS_PAGE,
   SERVICES_PAGE,
   USERS_PAGE,
 } from '../../helpers/constants/constants';
+import styles from './Admin.module.scss';
 
 const { Header, Content, Sider } = Layout;
 
@@ -38,23 +39,20 @@ const items: MenuProps['items'] = [
 ];
 
 const Admin: React.FC = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const pathArray = location.pathname.split('/');
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Header className="header">
-        <div className="logo">Xuxo</div>
+      <Header className={styles.header}>
+        <h1 onClick={() => navigate('/')} className={styles.logo}>
+          XUXO
+        </h1>
       </Header>
       <Layout>
         <Sider width={200}>
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderRight: 0 }}
-            items={items}
-          />
+          <Menu mode="inline" style={{ height: '100%', borderRight: 0 }} items={items} />
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>

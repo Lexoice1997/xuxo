@@ -7,11 +7,11 @@ import styles from './Conclusion.module.scss';
 
 const Conclusion = () => {
   const dispatch = useAppDispatch();
-  const { paymentOneUser } = useAppSelector((state) => state.paymentsReducer);
+  const { paymentOneUser, reload } = useAppSelector((state) => state.paymentsReducer);
 
   useEffect(() => {
     dispatch(fetchPaymentsByUser());
-  }, [dispatch]);
+  }, [dispatch, reload]);
 
   return (
     <div>

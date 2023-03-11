@@ -4,7 +4,15 @@ import { useAppDispatch } from '../../helpers/hooks/redux';
 import { setReload } from '../../store/slices/usersSlice';
 import { activateUser } from '../../store/thunks/usersThunk';
 
-const ActivateContent = ({ id, active }: { id: number; active: number }) => {
+const ActivateContent = ({
+  id,
+  active,
+  action,
+}: {
+  id: number;
+  active: number;
+  action: string;
+}) => {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
 
@@ -22,7 +30,7 @@ const ActivateContent = ({ id, active }: { id: number; active: number }) => {
     dispatch(setReload());
   };
 
-  const activateContent = () => <Button onClick={handleActivateUser}>Активировать</Button>;
+  const activateContent = () => <Button onClick={handleActivateUser}>{action}</Button>;
 
   return (
     <Popover
@@ -32,7 +40,9 @@ const ActivateContent = ({ id, active }: { id: number; active: number }) => {
       onOpenChange={handleOpenChange}
       open={open}
     >
-      <Button onClick={hide}>Activate</Button>
+      <Button onClick={hide} style={{ marginLeft: '10px' }}>
+        {action}
+      </Button>
     </Popover>
   );
 };

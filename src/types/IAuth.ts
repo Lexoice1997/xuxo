@@ -14,7 +14,7 @@ export interface ILoginData {
   card_number: string;
   expiration_date: string;
   status: string;
-  role: string;
-  isActive: number;
+  role: string | null;
+  isActive: string | null;
   created_at: string;
 }

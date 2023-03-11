@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
 import { setUsersPage } from '../../store/slices/usersSlice';
 import { IUsersData } from '../../types/IUsers';
+import ActivateContent from '../NewUsers/ActivateContent';
 import { fetchAllUsers, fetchUsers } from './../../store/thunks/usersThunk';
 import ReferalContent from './ReferalContent';
 
@@ -61,9 +62,31 @@ const Users = () => {
       key: 'status',
     },
     {
-      title: 'Актив',
-      dataIndex: 'isActive',
-      key: 'isActive',
+      title: 'Рефералы',
+      dataIndex: 'referals',
+      key: 'referals',
+      render: (_, record) => (
+        <>
+          <div>
+            {record.referals[0]?.referal_1 ? (
+              <>
+                {record.referals[0]?.referal_1.first_name} {record.referals[0].referal_1.first_name}
+              </>
+            ) : (
+              ''
+            )}
+          </div>
+          <div>
+            {record.referals[0]?.referal_2 ? (
+              <>
+                {record.referals[0]?.referal_2.first_name} {record.referals[0].referal_2.first_name}
+              </>
+            ) : (
+              ''
+            )}
+          </div>
+        </>
+      ),
     },
     {
       title: 'Действия',
@@ -73,6 +96,7 @@ const Users = () => {
       render: (_, record) => (
         <div key={record.id}>
           <ReferalContent id={record.id} />
+          <ActivateContent id={record.id} active={0} action="Ban" />
         </div>
       ),
     },

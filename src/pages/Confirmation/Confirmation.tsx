@@ -1,18 +1,24 @@
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../helpers/hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
+import { checkLogin } from '../../store/thunks/authThunk';
 import styles from './Confirmation.module.scss';
 
 function Confirmation() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authReducer);
 
   useEffect(() => {
-    if (user?.isActive === 1) {
+    if (user?.isActive === '1') {
       navigate('/');
     }
   }, [navigate, user?.isActive]);
+
+  useEffect(() => {
+    dispatch(checkLogin());
+  }, [dispatch]);
 
   return (
     <div className={styles.confirmation}>

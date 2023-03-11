@@ -31,7 +31,7 @@ export const paymentsSlice = createSlice({
       state.reload += 1;
     },
     setPage(state, action: PayloadAction<number>) {
-      state.page = action.payload;
+      state.page = action.payload - 1;
     },
   },
   extraReducers: {

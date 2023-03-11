@@ -20,7 +20,6 @@ const Services = () => {
       dataIndex: 'title',
       key: 'title',
       width: '30%',
-      // render: (_, record) => <div>{splitNum(record.sum)}</div>,
     },
     {
       title: 'Телефон',
@@ -42,12 +41,12 @@ const Services = () => {
     },
   ];
 
-  const onCreateService = (values: ICreateService) => {
+  const onCreateService = async (values: ICreateService) => {
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', values.title);
     formData.append('phone', values.phone);
-    dispatch(createService(formData));
+    await dispatch(createService(formData));
     dispatch(setCount());
   };
 

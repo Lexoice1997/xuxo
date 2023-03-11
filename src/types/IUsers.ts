@@ -16,6 +16,7 @@ export interface IUsersData {
   status: string;
   role: string;
   isActive: number;
+  referals: any;
   created_at: string;
 }
 
