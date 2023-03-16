@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.55342bed.css",
-    "main.js": "/static/js/main.b65fb1b3.js",
+    "main.css": "/static/css/main.19924ad4.css",
+    "main.js": "/static/js/main.25a5a73e.js",
     "static/media/Gilroy-Medium.woff2": "/static/media/Gilroy-Medium.acd4e613de34a826c191.woff2",
     "static/media/Gilroy-Semibold.woff2": "/static/media/Gilroy-Semibold.7726b19d33f1b7f4135a.woff2",
     "index.html": "/index.html",
-    "main.55342bed.css.map": "/static/css/main.55342bed.css.map",
-    "main.b65fb1b3.js.map": "/static/js/main.b65fb1b3.js.map"
+    "main.19924ad4.css.map": "/static/css/main.19924ad4.css.map",
+    "main.25a5a73e.js.map": "/static/js/main.25a5a73e.js.map"
   },
   "entrypoints": [
-    "static/css/main.55342bed.css",
-    "static/js/main.b65fb1b3.js"
+    "static/css/main.19924ad4.css",
+    "static/js/main.25a5a73e.js"
   ]
 }
