@@ -1,14 +1,12 @@
 import { Button, Form, Input, message, Modal } from 'antd';
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
-import { setUpdateUser } from '../../store/slices/authSlice';
+import { useAppDispatch } from '../../helpers/hooks/redux';
+import { updateUser } from '../../store/thunks/usersThunk';
 import { IUpdateUser } from '../../types/IUsers';
-import { updateUser } from './../../store/thunks/usersThunk';
 
-const UpdateUser = () => {
+const AdminUpdateUser = ({ first_name, last_name, card_number, expiration_date }: IUpdateUser) => {
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
-  const { user } = useAppSelector((state) => state.authReducer);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -27,32 +25,23 @@ const UpdateUser = () => {
         last_name: values.last_name,
         card_number: values.card_number,
         expiration_date: values.expiration_date,
-      })
-    );
-    dispatch(
-      setUpdateUser({
-        first_name: values.first_name,
-        last_name: values.last_name,
-        card_number: values.card_number,
-        expiration_date: values.expiration_date,
+        password: values.password?.length ? values.password : null,
       })
     );
   };
 
   useEffect(() => {
     form.setFieldsValue({
-      first_name: user?.first_name,
-      last_name: user?.last_name,
-      card_number: user?.card_number,
-      expiration_date: user?.expiration_date,
+      first_name,
+      last_name,
+      card_number,
+      expiration_date,
     });
-  }, [form, user?.card_number, user?.expiration_date, user?.first_name, user?.last_name]);
+  }, [form]);
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Обновить данные
-      </Button>
+      <Button onClick={showModal}>Update</Button>
       <Modal title="Изменить данные" open={isModalOpen} onCancel={handleCancel} okText={false}>
         <Form
           form={form}
@@ -61,22 +50,6 @@ const UpdateUser = () => {
           onFinish={onFinish}
           onFinishFailed={() => message.error('Неверные пароль или логин')}
           size="large"
-          labelCol={{
-            xs: { span: 12, offset: 0 },
-            sm: { span: 16, offset: 4 },
-            md: { span: 12, offset: 6 },
-            lg: { span: 8, offset: 8 },
-            xl: { span: 8, offset: 8 },
-            xxl: { span: 8, offset: 8 },
-          }}
-          wrapperCol={{
-            xs: { span: 12, offset: 0 },
-            sm: { span: 16, offset: 4 },
-            md: { span: 12, offset: 6 },
-            lg: { span: 8, offset: 8 },
-            xl: { span: 8, offset: 8 },
-            xxl: { span: 8, offset: 8 },
-          }}
         >
           <Form.Item
             name="first_name"
@@ -105,11 +78,13 @@ const UpdateUser = () => {
             label="Срок карты"
             rules={[{ message: 'Пожалуйста напишите срок карты!' }]}
           >
-            <Form.Item
-              name="password"
-              label="Пароль"
-              rules={[{ message: 'Пожалуйста напишите свой пароль!' }]}
-            ></Form.Item>
+            <Input style={{ width: '100%' }} size="large" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            label="Пароль"
+            rules={[{ message: 'Пожалуйста напишите свой пароль!' }]}
+          >
             <Input style={{ width: '100%' }} size="large" />
           </Form.Item>
           <Form.Item shouldUpdate>
@@ -123,4 +98,4 @@ const UpdateUser = () => {
   );
 };
 
-export default UpdateUser;
+export default AdminUpdateUser;

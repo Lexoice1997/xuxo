@@ -16,6 +16,7 @@ const Conclusion = () => {
   return (
     <div>
       <CashOrder />
+      <p className={styles.paragraph}>12% подоходный налог</p>
       {paymentOneUser?.map((item) => (
         <div key={item.id} className={styles.checks}>
           <div>{dayjs(item.created_at).format('YYYY MM DD')}</div>

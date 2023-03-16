@@ -25,6 +25,7 @@ export interface IUpdateUser {
   last_name: string;
   card_number: string;
   expiration_date: string;
+  password?: string | null;
 }
 
 export interface IAllUsers {

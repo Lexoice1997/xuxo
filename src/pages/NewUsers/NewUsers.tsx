@@ -73,10 +73,6 @@ const NewUsers = () => {
     dispatch(fetchUsers({ take: 10, page: newUsersPage, IsActive: 0 }));
   }, [reload, dispatch, newUsersPage]);
 
-  useEffect(() => {
-    dispatch(fetchAllUsers());
-  }, [dispatch]);
-
   return (
     <>
       <Table

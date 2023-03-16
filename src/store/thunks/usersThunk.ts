@@ -58,13 +58,17 @@ export const addReferalUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'users/updateUser',
-  async ({ first_name, last_name, card_number, expiration_date }: IUpdateUser, thunkAPI) => {
+  async (
+    { first_name, last_name, card_number, expiration_date, password }: IUpdateUser,
+    thunkAPI
+  ) => {
     try {
       const { data } = await $authHost.patch(`/user/profile`, {
         first_name,
         last_name,
         card_number,
         expiration_date,
+        password,
       });
       return data.payload;
     } catch (e) {
@@ -72,3 +76,12 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const deleteUser = createAsyncThunk('users/deleteUser', async (id: number, thunkAPI) => {
+  try {
+    const { data } = await $authHost.delete(`/admin/user/delete/${id}`);
+    return data.payload;
+  } catch (e) {
+    return thunkAPI.rejectWithValue('Не удалось загрузить пользователей');
+  }
+});
