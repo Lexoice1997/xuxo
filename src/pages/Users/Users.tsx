@@ -72,7 +72,7 @@ const Users = () => {
           <div>
             {record.referals[0]?.referal_1 ? (
               <>
-                {record.referals[0]?.referal_1.first_name} {record.referals[0].referal_1.first_name}
+                {record.referals[0]?.referal_1.first_name} {record.referals[0].referal_1.last_name}
               </>
             ) : (
               ''
@@ -81,7 +81,7 @@ const Users = () => {
           <div>
             {record.referals[0]?.referal_2 ? (
               <>
-                {record.referals[0]?.referal_2.first_name} {record.referals[0].referal_2.first_name}
+                {record.referals[0]?.referal_2.first_name} {record.referals[0].referal_2.last_name}
               </>
             ) : (
               ''
