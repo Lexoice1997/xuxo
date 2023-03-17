@@ -1,7 +1,6 @@
 import { Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
 import { useEffect } from 'react';
-import DeleteUser from '../../components/DeleteUser/DeleteUser';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
 import { setUsersPage } from '../../store/slices/usersSlice';
