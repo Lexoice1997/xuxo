@@ -109,7 +109,6 @@ const Users = () => {
               card_number={record.card_number}
               expiration_date={record.expiration_date}
             />
-            <DeleteUser id={record.id} />
           </div>
         </div>
       ),
