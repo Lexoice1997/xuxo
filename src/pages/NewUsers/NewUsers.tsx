@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
 import { setNewUsersPage } from '../../store/slices/usersSlice';
 import { IUsersData } from '../../types/IUsers';
-import { fetchAllUsers, fetchUsers } from './../../store/thunks/usersThunk';
+import { fetchUsers } from './../../store/thunks/usersThunk';
 import ActivateContent from './ActivateContent';
 
 const NewUsers = () => {

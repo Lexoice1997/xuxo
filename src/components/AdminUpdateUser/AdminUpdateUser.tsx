@@ -37,7 +37,7 @@ const AdminUpdateUser = ({ first_name, last_name, card_number, expiration_date }
       card_number,
       expiration_date,
     });
-  }, [form]);
+  }, [card_number, expiration_date, first_name, form, last_name]);
 
   return (
     <>
