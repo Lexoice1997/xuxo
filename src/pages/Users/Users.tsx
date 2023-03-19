@@ -48,9 +48,15 @@ const Users = () => {
       key: 'password_number',
     },
     {
-      title: 'ПИНФЛ',
+      title: 'ПНФЛ',
       dataIndex: 'pinfl',
       key: 'pinfl',
+    },
+    {
+      title: 'Referal Count',
+      dataIndex: 'referal_count',
+      key: 'referal_count',
+      render: (_, record) => <div>{record.tree}</div>,
     },
     {
       title: 'Баланс',

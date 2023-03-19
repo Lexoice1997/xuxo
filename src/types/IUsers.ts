@@ -4,6 +4,7 @@ export interface IUsers {
 }
 
 export interface IUsersData {
+  // tree(tree: any): import("react").ReactNode;
   id: number;
   first_name: string;
   last_name: string;
@@ -15,6 +16,7 @@ export interface IUsersData {
   expiration_date: string;
   status: string;
   role: string;
+  tree: number;
   isActive: number;
   referals: any;
   created_at: string;
