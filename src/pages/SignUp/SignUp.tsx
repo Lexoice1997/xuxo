@@ -102,7 +102,7 @@ function SignUp() {
         </Form.Item> */}
         <Form.Item
           name="pinfl"
-          label="ПИНФЛ"
+          label="ПНФЛ"
           rules={[
             { required: true, message: 'Пожалуйста напишите своё ПИНФЛ!' },
             { min: 14, message: 'ПИНФЛ должен быть не меньше 14 символов' },
