@@ -7,7 +7,7 @@ import { splitNum } from '../../helpers/utils/splitNum';
 import { setUsersPage } from '../../store/slices/usersSlice';
 import { IUsersData } from '../../types/IUsers';
 import ActivateContent from '../NewUsers/ActivateContent';
-import AdminUpdateUser from './../../components/AdminUpdateUser/AdminUpdateUser';
+// import AdminUpdateUser from './../../components/AdminUpdateUser/AdminUpdateUser';
 import { fetchAllUsers, fetchUsers } from './../../store/thunks/usersThunk';
 import ReferalContent from './ReferalContent';
 
@@ -48,9 +48,15 @@ const Users = () => {
       key: 'password_number',
     },
     {
-      title: 'ПИНФЛ',
+      title: 'ПНФЛ',
       dataIndex: 'pinfl',
       key: 'pinfl',
+    },
+    {
+      title: 'Referal Count',
+      dataIndex: 'referal_count',
+      key: 'referal_count',
+      render: (_, record) => <div>{record.tree}</div>,
     },
     {
       title: 'Баланс',
@@ -102,15 +108,15 @@ const Users = () => {
             <ActivateContent id={record.id} active={0} action="Ban" />
           </div>
 
-          <div style={{ display: 'flex' }}>
+          {/* <div style={{ display: 'flex' }}>
             <AdminUpdateUser
               first_name={record.first_name}
               last_name={record.last_name}
               card_number={record.card_number}
               expiration_date={record.expiration_date}
             />
-            <DeleteUser id={record.id} />
-          </div>
+          </div> */}
+          <DeleteUser id={record.id} />
         </div>
       ),
     },

@@ -34,7 +34,7 @@ function Accaunt() {
           <span>{user?.passport_number}</span>
         </li>
         <li>
-          <span className={styles.info}>ПИНФЛ:</span>
+          <span className={styles.info}>ПНФЛ:</span>
           <span>{user?.pinfl}</span>
         </li>
         <li>

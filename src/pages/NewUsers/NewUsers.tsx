@@ -1,6 +1,7 @@
 import { Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
 import { useEffect } from 'react';
+import DeleteUser from '../../components/DeleteUser/DeleteUser';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
 import { setNewUsersPage } from '../../store/slices/usersSlice';
@@ -64,6 +65,7 @@ const NewUsers = () => {
       render: (_, record) => (
         <div key={record.id}>
           <ActivateContent id={record.id} active={1} action="Activate" />
+          <DeleteUser id={record.id} />
         </div>
       ),
     },
