@@ -1,6 +1,7 @@
 import { Button, Form, Input, message, Modal } from 'antd';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../helpers/hooks/redux';
+import { setReload } from '../../store/slices/usersSlice';
 import { updateUser } from '../../store/thunks/usersThunk';
 import { IUpdateUser } from '../../types/IUsers';
 
@@ -28,6 +29,7 @@ const AdminUpdateUser = ({ first_name, last_name, card_number, expiration_date }
         password: values.password?.length ? values.password : null,
       })
     );
+    dispatch(setReload());
   };
 
   useEffect(() => {

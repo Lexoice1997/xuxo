@@ -5,8 +5,8 @@ import { deleteUser } from '../../store/thunks/usersThunk';
 
 const DeleteUser = ({ id }: { id: number }) => {
   const dispatch = useAppDispatch();
-  const handleDeleteUser = () => {
-    dispatch(deleteUser(id));
+  const handleDeleteUser = async () => {
+    await dispatch(deleteUser(id));
     dispatch(setReload());
   };
 

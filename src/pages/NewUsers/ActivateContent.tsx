@@ -35,7 +35,7 @@ const ActivateContent = ({
   return (
     <Popover
       content={activateContent}
-      title="Активация"
+      title={action}
       trigger="click"
       onOpenChange={handleOpenChange}
       open={open}

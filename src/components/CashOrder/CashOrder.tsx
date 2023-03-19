@@ -68,22 +68,22 @@ const CashOrder = () => {
             layout="vertical"
             onFinish={onFinishAmoute}
             size="large"
-            labelCol={{
-              xs: { span: 12, offset: 0 },
-              sm: { span: 16, offset: 4 },
-              md: { span: 12, offset: 6 },
-              lg: { span: 8, offset: 8 },
-              xl: { span: 8, offset: 8 },
-              xxl: { span: 8, offset: 8 },
-            }}
-            wrapperCol={{
-              xs: { span: 12, offset: 0 },
-              sm: { span: 16, offset: 4 },
-              md: { span: 12, offset: 6 },
-              lg: { span: 8, offset: 8 },
-              xl: { span: 8, offset: 8 },
-              xxl: { span: 8, offset: 8 },
-            }}
+            // labelCol={{
+            //   xs: { span: 12, offset: 0 },
+            //   sm: { span: 16, offset: 4 },
+            //   md: { span: 12, offset: 6 },
+            //   lg: { span: 8, offset: 8 },
+            //   xl: { span: 8, offset: 8 },
+            //   xxl: { span: 8, offset: 8 },
+            // }}
+            // wrapperCol={{
+            //   xs: { span: 12, offset: 0 },
+            //   sm: { span: 16, offset: 4 },
+            //   md: { span: 12, offset: 6 },
+            //   lg: { span: 8, offset: 8 },
+            //   xl: { span: 8, offset: 8 },
+            //   xxl: { span: 8, offset: 8 },
+            // }}
           >
             <Form.Item
               name="amoute"
@@ -105,22 +105,22 @@ const CashOrder = () => {
             layout="vertical"
             onFinish={onFinishAmouteWithCard}
             size="large"
-            labelCol={{
-              xs: { span: 12, offset: 0 },
-              sm: { span: 16, offset: 4 },
-              md: { span: 12, offset: 6 },
-              lg: { span: 8, offset: 8 },
-              xl: { span: 8, offset: 8 },
-              xxl: { span: 8, offset: 8 },
-            }}
-            wrapperCol={{
-              xs: { span: 12, offset: 0 },
-              sm: { span: 16, offset: 4 },
-              md: { span: 12, offset: 6 },
-              lg: { span: 8, offset: 8 },
-              xl: { span: 8, offset: 8 },
-              xxl: { span: 8, offset: 8 },
-            }}
+            // labelCol={{
+            //   xs: { span: 12, offset: 0 },
+            //   sm: { span: 16, offset: 4 },
+            //   md: { span: 12, offset: 6 },
+            //   lg: { span: 8, offset: 8 },
+            //   xl: { span: 8, offset: 8 },
+            //   xxl: { span: 8, offset: 8 },
+            // }}
+            // wrapperCol={{
+            //   xs: { span: 12, offset: 0 },
+            //   sm: { span: 16, offset: 4 },
+            //   md: { span: 12, offset: 6 },
+            //   lg: { span: 8, offset: 8 },
+            //   xl: { span: 8, offset: 8 },
+            //   xxl: { span: 8, offset: 8 },
+            // }}
           >
             <Form.Item
               name="card_number"
