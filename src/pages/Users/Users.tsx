@@ -1,14 +1,12 @@
 import { Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
 import { useEffect } from 'react';
-import AdminUpdateUser from '../../components/AdminUpdateUser/AdminUpdateUser';
 import DeleteUser from '../../components/DeleteUser/DeleteUser';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
 import { setUsersPage } from '../../store/slices/usersSlice';
 import { IUsersData } from '../../types/IUsers';
 import ActivateContent from '../NewUsers/ActivateContent';
-// import AdminUpdateUser from './../../components/AdminUpdateUser/AdminUpdateUser';
 import { fetchAllUsers, fetchUsers } from './../../store/thunks/usersThunk';
 import ReferalContent from './ReferalContent';
 
@@ -48,11 +46,11 @@ const Users = () => {
       dataIndex: 'passport_number',
       key: 'password_number',
     },
-    {
-      title: 'ПНФЛ',
-      dataIndex: 'pinfl',
-      key: 'pinfl',
-    },
+    // {
+    //   title: 'ПНФЛ',
+    //   dataIndex: 'pinfl',
+    //   key: 'pinfl',
+    // },
     {
       title: 'Referal Count',
       dataIndex: 'referal_count',

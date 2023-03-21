@@ -40,11 +40,11 @@ const NewUsers = () => {
       dataIndex: 'passport_number',
       key: 'password_number',
     },
-    {
-      title: 'ПИНФЛ',
-      dataIndex: 'pinfl',
-      key: 'pinfl',
-    },
+    // {
+    //   title: 'ПИНФЛ',
+    //   dataIndex: 'pinfl',
+    //   key: 'pinfl',
+    // },
     {
       title: 'Баланс',
       dataIndex: 'balance',
