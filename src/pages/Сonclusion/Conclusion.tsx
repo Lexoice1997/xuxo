@@ -16,7 +16,6 @@ const Conclusion = () => {
   return (
     <div>
       <CashOrder />
-      <p className={styles.paragraph}>Дарамат салыгы 12% услап калынады</p>
       {paymentOneUser?.map((item) => (
         <div key={item.id} className={styles.checks}>
           <div>{dayjs(item.created_at).format('YYYY MM DD')}</div>

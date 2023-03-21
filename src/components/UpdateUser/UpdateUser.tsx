@@ -61,22 +61,6 @@ const UpdateUser = () => {
           onFinish={onFinish}
           onFinishFailed={() => message.error('Неверные пароль или логин')}
           size="large"
-          labelCol={{
-            xs: { span: 12, offset: 0 },
-            sm: { span: 16, offset: 4 },
-            md: { span: 12, offset: 6 },
-            lg: { span: 8, offset: 8 },
-            xl: { span: 8, offset: 8 },
-            xxl: { span: 8, offset: 8 },
-          }}
-          wrapperCol={{
-            xs: { span: 12, offset: 0 },
-            sm: { span: 16, offset: 4 },
-            md: { span: 12, offset: 6 },
-            lg: { span: 8, offset: 8 },
-            xl: { span: 8, offset: 8 },
-            xxl: { span: 8, offset: 8 },
-          }}
         >
           <Form.Item
             name="first_name"
@@ -105,11 +89,13 @@ const UpdateUser = () => {
             label="Срок карты"
             rules={[{ message: 'Пожалуйста напишите срок карты!' }]}
           >
-            <Form.Item
-              name="password"
-              label="Пароль"
-              rules={[{ message: 'Пожалуйста напишите свой пароль!' }]}
-            ></Form.Item>
+            <Input style={{ width: '100%' }} size="large" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            label="Пароль"
+            rules={[{ message: 'Пожалуйста напишите свой пароль!' }]}
+          >
             <Input style={{ width: '100%' }} size="large" />
           </Form.Item>
           <Form.Item shouldUpdate>

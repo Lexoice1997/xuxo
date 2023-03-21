@@ -18,7 +18,11 @@ const initialState: ITreeState = {
 export const treeSlice = createSlice({
   name: 'tree',
   initialState,
-  reducers: {},
+  reducers: {
+    setReferrals(state, action: PayloadAction<any>) {
+      state.tree = action.payload;
+    },
+  },
   extraReducers: {
     [fetchReferral.fulfilled.type]: (state, action: PayloadAction<any>) => {
       state.tree = action.payload;
@@ -34,5 +38,7 @@ export const treeSlice = createSlice({
     },
   },
 });
+
+export const { setReferrals } = treeSlice.actions;
 
 export default treeSlice.reducer;

@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Modal } from 'antd';
+import { Button, Form, Input, message, Modal, Typography } from 'antd';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { setBalance } from '../../store/slices/authSlice';
@@ -34,7 +34,7 @@ const CashOrder = () => {
         expiration_date: values.expiration_date,
       })
     );
-    dispatch(createAmoute({ amoute: values.amoute }))
+    await dispatch(createAmoute({ amoute: values.amoute }))
       .unwrap()
       .then(() => handleCancel())
       .catch((rejectedValueOrSerializedError) => {
@@ -68,22 +68,6 @@ const CashOrder = () => {
             layout="vertical"
             onFinish={onFinishAmoute}
             size="large"
-            // labelCol={{
-            //   xs: { span: 12, offset: 0 },
-            //   sm: { span: 16, offset: 4 },
-            //   md: { span: 12, offset: 6 },
-            //   lg: { span: 8, offset: 8 },
-            //   xl: { span: 8, offset: 8 },
-            //   xxl: { span: 8, offset: 8 },
-            // }}
-            // wrapperCol={{
-            //   xs: { span: 12, offset: 0 },
-            //   sm: { span: 16, offset: 4 },
-            //   md: { span: 12, offset: 6 },
-            //   lg: { span: 8, offset: 8 },
-            //   xl: { span: 8, offset: 8 },
-            //   xxl: { span: 8, offset: 8 },
-            // }}
           >
             <Form.Item
               name="amoute"
@@ -97,6 +81,7 @@ const CashOrder = () => {
                 Вывод
               </Button>
             </Form.Item>
+            <Typography.Text type="danger">Дарамат салыгы 12% услап калынады</Typography.Text>
           </Form>
         ) : (
           <Form
@@ -105,22 +90,6 @@ const CashOrder = () => {
             layout="vertical"
             onFinish={onFinishAmouteWithCard}
             size="large"
-            // labelCol={{
-            //   xs: { span: 12, offset: 0 },
-            //   sm: { span: 16, offset: 4 },
-            //   md: { span: 12, offset: 6 },
-            //   lg: { span: 8, offset: 8 },
-            //   xl: { span: 8, offset: 8 },
-            //   xxl: { span: 8, offset: 8 },
-            // }}
-            // wrapperCol={{
-            //   xs: { span: 12, offset: 0 },
-            //   sm: { span: 16, offset: 4 },
-            //   md: { span: 12, offset: 6 },
-            //   lg: { span: 8, offset: 8 },
-            //   xl: { span: 8, offset: 8 },
-            //   xxl: { span: 8, offset: 8 },
-            // }}
           >
             <Form.Item
               name="card_number"
@@ -148,6 +117,7 @@ const CashOrder = () => {
                 Вывод
               </Button>
             </Form.Item>
+            <Typography.Text type="danger">Дарамат салыгы 12% услап калынады</Typography.Text>
           </Form>
         )}
       </Modal>

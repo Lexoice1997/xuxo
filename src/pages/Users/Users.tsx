@@ -1,6 +1,7 @@
 import { Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table/interface';
 import { useEffect } from 'react';
+import AdminUpdateUser from '../../components/AdminUpdateUser/AdminUpdateUser';
 import DeleteUser from '../../components/DeleteUser/DeleteUser';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
@@ -108,15 +109,15 @@ const Users = () => {
             <ActivateContent id={record.id} active={0} action="Ban" />
           </div>
 
-          {/* <div style={{ display: 'flex' }}>
-            <AdminUpdateUser
+          {/* <div style={{ display: 'flex' }}> */}
+          {/* <AdminUpdateUser
               first_name={record.first_name}
               last_name={record.last_name}
               card_number={record.card_number}
               expiration_date={record.expiration_date}
-            />
-          </div> */}
+            /> */}
           <DeleteUser id={record.id} />
+          {/* </div> */}
         </div>
       ),
     },
