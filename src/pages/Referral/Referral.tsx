@@ -13,6 +13,7 @@ function Referral() {
   const { user } = useAppSelector((state) => state.authReducer);
   const { tree } = useAppSelector((state) => state.treeReducer);
 
+  const [mainUser, setMainUser] = useState<any>();
   const [fourAndFive, setFourAndFive] = useState<IReferralData | null>(null);
   const [sixAndSeven, setSixAndSeven] = useState<IReferralData | null>(null);
   const [eightAndNine, setEightAndNine] = useState<IReferralData | null>(null);
@@ -38,9 +39,10 @@ function Referral() {
     null
   );
 
-  const handleFetchTree = async (id: number) => {
+  const handleFetchTree = async (id: number, firstName: string, lastName: string) => {
     const data = await dispatch(fetchTree(id));
-    dispatch(setReferrals(data));
+    dispatch(setReferrals(data.payload.payload));
+    setMainUser({ firstName: firstName, lastName: lastName });
     setFourAndFive(null);
     setSixAndSeven(null);
     setEightAndNine(null);
@@ -129,6 +131,7 @@ function Referral() {
 
   useEffect(() => {
     dispatch(fetchReferral());
+    setMainUser({ firstName: user.first_name, lastName: user.last_name });
   }, [dispatch, user?.id]);
 
   return (
@@ -154,7 +157,7 @@ function Referral() {
         <Tree
           label={
             <div>
-              {user?.first_name} {user?.last_name}
+              {mainUser?.firstName} {mainUser?.lastName}
             </div>
           }
         >
@@ -189,7 +192,15 @@ function Referral() {
                       {sixteenAndSeventeen?.referal_1 && (
                         <TreeNode
                           label={
-                            <div onClick={() => handleFetchTree(sixteenAndSeventeen.referal1_id)}>
+                            <div
+                              onClick={() =>
+                                handleFetchTree(
+                                  sixteenAndSeventeen.referal1_id,
+                                  sixteenAndSeventeen.referal_1.first_name,
+                                  sixteenAndSeventeen.referal_1.last_name
+                                )
+                              }
+                            >
                               {sixteenAndSeventeen.referal_1.first_name}
                               {sixteenAndSeventeen.referal_1.last_name}
                             </div>
@@ -199,7 +210,15 @@ function Referral() {
                       {sixteenAndSeventeen?.referal_2 && (
                         <TreeNode
                           label={
-                            <div onClick={() => handleFetchTree(sixteenAndSeventeen.referal2_id)}>
+                            <div
+                              onClick={() =>
+                                handleFetchTree(
+                                  sixteenAndSeventeen.referal2_id,
+                                  sixteenAndSeventeen.referal_2.first_name,
+                                  sixteenAndSeventeen.referal_2.last_name
+                                )
+                              }
+                            >
                               {sixteenAndSeventeen.referal_2.first_name}
                               {sixteenAndSeventeen.referal_2.last_name}
                             </div>
@@ -223,7 +242,15 @@ function Referral() {
                       {eighTeenAndNineteen?.referal_1 && (
                         <TreeNode
                           label={
-                            <div onClick={() => handleFetchTree(eighTeenAndNineteen.referal1_id)}>
+                            <div
+                              onClick={() =>
+                                handleFetchTree(
+                                  eighTeenAndNineteen.referal1_id,
+                                  eighTeenAndNineteen.referal_1.first_name,
+                                  eighTeenAndNineteen.referal_1.last_name
+                                )
+                              }
+                            >
                               {eighTeenAndNineteen.referal_1.first_name}
                               {eighTeenAndNineteen.referal_1.last_name}
                             </div>
@@ -233,7 +260,15 @@ function Referral() {
                       {eighTeenAndNineteen?.referal_2 && (
                         <TreeNode
                           label={
-                            <div onClick={() => handleFetchTree(eighTeenAndNineteen.referal2_id)}>
+                            <div
+                              onClick={() =>
+                                handleFetchTree(
+                                  eighTeenAndNineteen.referal2_id,
+                                  eighTeenAndNineteen.referal_2.first_name,
+                                  eighTeenAndNineteen.referal_2.last_name
+                                )
+                              }
+                            >
                               {eighTeenAndNineteen.referal_2.first_name}
                               {eighTeenAndNineteen.referal_2.last_name}
                             </div>
@@ -267,7 +302,15 @@ function Referral() {
                       {twentyAndTwentyOne?.referal_1 && (
                         <TreeNode
                           label={
-                            <div onClick={() => handleFetchTree(twentyAndTwentyOne.referal1_id)}>
+                            <div
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyAndTwentyOne.referal1_id,
+                                  twentyAndTwentyOne.referal_1.first_name,
+                                  twentyAndTwentyOne.referal_1.last_name
+                                )
+                              }
+                            >
                               {twentyAndTwentyOne.referal_1.first_name}
                               {twentyAndTwentyOne.referal_1.last_name}
                             </div>
@@ -277,7 +320,15 @@ function Referral() {
                       {twentyAndTwentyOne?.referal_2 && (
                         <TreeNode
                           label={
-                            <div onClick={() => handleFetchTree(twentyAndTwentyOne.referal2_id)}>
+                            <div
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyAndTwentyOne.referal2_id,
+                                  twentyAndTwentyOne.referal_2.first_name,
+                                  twentyAndTwentyOne.referal_2.last_name
+                                )
+                              }
+                            >
                               {twentyAndTwentyOne.referal_2.first_name}
                               {twentyAndTwentyOne.referal_2.last_name}
                             </div>
@@ -302,7 +353,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentyTwoAndTwentyThree.referal1_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyTwoAndTwentyThree.referal1_id,
+                                  twentyTwoAndTwentyThree.referal_1.first_name,
+                                  twentyTwoAndTwentyThree.referal_1.last_name
+                                )
+                              }
                             >
                               {twentyTwoAndTwentyThree.referal_1.first_name}
                               {twentyTwoAndTwentyThree.referal_1.last_name}
@@ -314,7 +371,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentyTwoAndTwentyThree.referal2_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyTwoAndTwentyThree.referal2_id,
+                                  twentyTwoAndTwentyThree.referal_2.first_name,
+                                  twentyTwoAndTwentyThree.referal_2.last_name
+                                )
+                              }
                             >
                               {twentyTwoAndTwentyThree.referal_2.first_name}
                               {twentyTwoAndTwentyThree.referal_2.last_name}
@@ -361,7 +424,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentyFourAndTwentyFive.referal1_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyFourAndTwentyFive.referal1_id,
+                                  twentyFourAndTwentyFive.referal_1.first_name,
+                                  twentyFourAndTwentyFive.referal_1.last_name
+                                )
+                              }
                             >
                               {twentyFourAndTwentyFive.referal_1.first_name}
                               {twentyFourAndTwentyFive.referal_1.last_name}
@@ -373,7 +442,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentyFourAndTwentyFive.referal2_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyFourAndTwentyFive.referal2_id,
+                                  twentyFourAndTwentyFive.referal_2.first_name,
+                                  twentyFourAndTwentyFive.referal_2.last_name
+                                )
+                              }
                             >
                               {twentyFourAndTwentyFive.referal_2.first_name}
                               {twentyFourAndTwentyFive.referal_2.last_name}
@@ -400,7 +475,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentySixAndTwentySeven.referal1_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentySixAndTwentySeven.referal1_id,
+                                  twentySixAndTwentySeven.referal_1.first_name,
+                                  twentySixAndTwentySeven.referal_1.last_name
+                                )
+                              }
                             >
                               {twentySixAndTwentySeven.referal_1.first_name}
                               {twentySixAndTwentySeven.referal_1.last_name}
@@ -412,7 +493,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentySixAndTwentySeven.referal2_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentySixAndTwentySeven.referal2_id,
+                                  twentySixAndTwentySeven.referal_2.first_name,
+                                  twentySixAndTwentySeven.referal_2.last_name
+                                )
+                              }
                             >
                               {twentySixAndTwentySeven.referal_2.first_name}
                               {twentySixAndTwentySeven.referal_2.last_name}
@@ -449,7 +536,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentyEightAndTwentyNine.referal1_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyEightAndTwentyNine.referal1_id,
+                                  twentyEightAndTwentyNine.referal_1.first_name,
+                                  twentyEightAndTwentyNine.referal_1.last_name
+                                )
+                              }
                             >
                               {twentyEightAndTwentyNine.referal_1.first_name}
                               {twentyEightAndTwentyNine.referal_1.last_name}
@@ -461,7 +554,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(twentyEightAndTwentyNine.referal2_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  twentyEightAndTwentyNine.referal2_id,
+                                  twentyEightAndTwentyNine.referal_2.first_name,
+                                  twentyEightAndTwentyNine.referal_2.last_name
+                                )
+                              }
                             >
                               {twentyEightAndTwentyNine.referal_2.first_name}
                               {twentyEightAndTwentyNine.referal_2.last_name}
@@ -488,7 +587,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(thirtyAndTwentyThirtyOne.referal1_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  thirtyAndTwentyThirtyOne.referal1_id,
+                                  thirtyAndTwentyThirtyOne.referal_1.first_name,
+                                  thirtyAndTwentyThirtyOne.referal_1.last_name
+                                )
+                              }
                             >
                               {thirtyAndTwentyThirtyOne.referal_1.first_name}
                               {thirtyAndTwentyThirtyOne.referal_1.last_name}
@@ -500,7 +605,13 @@ function Referral() {
                         <TreeNode
                           label={
                             <div
-                              onClick={() => handleFetchTree(thirtyAndTwentyThirtyOne.referal2_id)}
+                              onClick={() =>
+                                handleFetchTree(
+                                  thirtyAndTwentyThirtyOne.referal2_id,
+                                  thirtyAndTwentyThirtyOne.referal_2.first_name,
+                                  thirtyAndTwentyThirtyOne.referal_2.last_name
+                                )
+                              }
                             >
                               {thirtyAndTwentyThirtyOne.referal_2.first_name}
                               {thirtyAndTwentyThirtyOne.referal_2.last_name}
