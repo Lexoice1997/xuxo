@@ -23,7 +23,7 @@ const ServiceDetail = () => {
       </div>
 
       <img src={service?.image} alt={service?.title} className={styles.image} />
-      <a href="tel:99899-284-44-44">
+      <a href={`tel:${service?.phone}`}>
         <div className={styles.phone}>
           <PhoneOutlined style={{ fontSize: 20 }} />
           <h3>{service?.phone}</h3>
