@@ -65,26 +65,6 @@ function Referral() {
   const [sixtyAndSixtyOne, setSixtyAndSixtyOne] = useState<IReferralData | null>(null);
   const [sixtyTwoAndSixtyThree, setSixtyTwoAndSixtyThree] = useState<IReferralData | null>(null);
 
-  const handleFetchTree = async (id: number, firstName: string, lastName: string) => {
-    const data = await dispatch(fetchTree(id));
-    dispatch(setReferrals(data.payload.payload));
-    setMainUser({ firstName: firstName, lastName: lastName });
-    setFourAndFive(null);
-    setSixAndSeven(null);
-    setEightAndNine(null);
-    setTenAndEleven(null);
-    setTwelveAndThirteen(null);
-    setFourteenAndFifteen(null);
-    setSixteenAndSeventeen(null);
-    setEighTeenAndNineteen(null);
-    setTwentyAndTwentyOne(null);
-    setTwentyTwoAndTwentyThree(null);
-    setTwentyFourAndTwentyFive(null);
-    setTwentySixAndTwentySeven(null);
-    setTwentyEightAndTwentyNine(null);
-    // setThirtyAndTwentyThirtyOne(null);
-  };
-
   const handleFetchTreeFourAndFive = async (id: number) => {
     const data = await dispatch(fetchTree(id));
     setFourAndFive(data.payload.payload);
@@ -223,7 +203,7 @@ function Referral() {
   useEffect(() => {
     dispatch(fetchReferral());
     setMainUser({ firstName: user.first_name, lastName: user.last_name });
-  }, [dispatch, user?.id]);
+  }, [dispatch, user.first_name, user.id, user.last_name]);
 
   return (
     <div id="treeWrapper" className={styles.referral}>
