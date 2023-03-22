@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Tree, TreeNode } from 'react-organizational-chart';
 import BackBtn from '../../components/BackBtn/BackBtn';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
-import { setReferrals } from '../../store/slices/treeSlice';
 import { fetchReferral, fetchTree } from '../../store/thunks/treeThunk';
 import { IReferralData } from '../../types/ITree';
 import styles from './Referral.module.scss';
