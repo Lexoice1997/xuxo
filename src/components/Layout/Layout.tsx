@@ -39,17 +39,43 @@ function Main() {
               style={{ color: 'white' }}
             />
             <Col className={styles.buttons}>
-              <Button size="large" style={{ marginTop: 16 }} type="primary">
+              <Button
+                size="large"
+                style={{
+                  marginTop: 16,
+                  backgroundColor: '#327b9d',
+                  border: 'none',
+                  color: 'white',
+                }}
+                type="primary"
+              >
                 <NavLink to={`${REFERRAL_PAGE}`}>Рефералы</NavLink>
               </Button>
-              <Button size="large" style={{ marginTop: 16 }} type="primary">
+              <Button
+                size="large"
+                style={{
+                  marginTop: 16,
+                  backgroundColor: '#327b9d',
+                  border: 'none',
+                  color: 'white',
+                }}
+                type="primary"
+              >
                 <NavLink to={`${CONCLUSION_PAGE}`}>Вывод</NavLink>
               </Button>
-              <Button size="large" style={{ marginTop: 16 }} type="primary">
+              <Button
+                size="large"
+                style={{
+                  marginTop: 16,
+                  backgroundColor: '#327b9d',
+                  border: 'none',
+                  color: 'white',
+                }}
+              >
                 <NavLink to={`${ACCAUNT_PAGE}`}>Аккаунт</NavLink>
               </Button>
               {user?.role === 'Admin' ? (
-                <Button size="large" style={{ marginTop: 16 }} type="primary">
+                <Button size="large" style={{ marginTop: 16, color: '#327b9d' }} type="primary">
                   <NavLink to={`${ADMIN_PAGE}`}>Админ</NavLink>
                 </Button>
               ) : (

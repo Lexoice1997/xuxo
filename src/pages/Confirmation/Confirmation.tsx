@@ -1,4 +1,5 @@
 import { ClockCircleOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
@@ -25,6 +26,7 @@ function Confirmation() {
       <ClockCircleOutlined style={{ fontSize: '70px', color: '#1890FF' }} />
       <h2>Потверждение аккаунта</h2>
       <p>Пожалуйста обратитесь к менеджеру для одобрения регистрации вашего аккаунта</p>
+      <Button onClick={() => navigate('/login')}>Логин</Button>
     </div>
   );
 }
