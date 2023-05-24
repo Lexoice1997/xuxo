@@ -226,7 +226,6 @@ function Referral() {
         <Tree
           label={
             <div>
-              24
               {mainUser?.firstName} {mainUser?.lastName}
             </div>
           }
