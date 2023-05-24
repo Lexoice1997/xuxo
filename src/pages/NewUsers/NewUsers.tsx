@@ -65,7 +65,6 @@ const NewUsers = () => {
       render: (_, record) => (
         <div key={record.id}>
           <ActivateContent id={record.id} active={1} action="Activate" />
-          <DeleteUser id={record.id} />
         </div>
       ),
     },

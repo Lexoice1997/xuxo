@@ -11,7 +11,6 @@ function Referral() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authReducer);
   const { tree } = useAppSelector((state) => state.treeReducer);
-
   const [mainUser, setMainUser] = useState<any>();
   const [fourAndFive, setFourAndFive] = useState<IReferralData | null>(null);
   const [sixAndSeven, setSixAndSeven] = useState<IReferralData | null>(null);
@@ -227,6 +226,7 @@ function Referral() {
         <Tree
           label={
             <div>
+              24
               {mainUser?.firstName} {mainUser?.lastName}
             </div>
           }

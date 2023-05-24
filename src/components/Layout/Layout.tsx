@@ -38,12 +38,15 @@ function Main() {
               valueStyle={{ color: 'white' }}
               style={{ color: 'white' }}
             />
+            <p>
+              {user?.first_name} {user?.last_name}
+            </p>
             <Col className={styles.buttons}>
               <Button
                 size="large"
                 style={{
                   marginTop: 16,
-                  backgroundColor: '#327b9d',
+                  backgroundColor: '#1890FF',
                   border: 'none',
                   color: 'white',
                 }}
@@ -55,7 +58,7 @@ function Main() {
                 size="large"
                 style={{
                   marginTop: 16,
-                  backgroundColor: '#327b9d',
+                  backgroundColor: '#1890FF',
                   border: 'none',
                   color: 'white',
                 }}
@@ -67,7 +70,7 @@ function Main() {
                 size="large"
                 style={{
                   marginTop: 16,
-                  backgroundColor: '#327b9d',
+                  backgroundColor: '#1890FF',
                   border: 'none',
                   color: 'white',
                 }}
