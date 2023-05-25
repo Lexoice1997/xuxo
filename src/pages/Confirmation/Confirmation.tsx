@@ -26,6 +26,7 @@ function Confirmation() {
       <ClockCircleOutlined style={{ fontSize: '70px', color: '#1890FF' }} />
       <h2>Потверждение аккаунта</h2>
       <p>Пожалуйста обратитесь к менеджеру для одобрения регистрации вашего аккаунта</p>
+      <p>+998977887723 звоните по этому номеру</p>
       <Button onClick={() => navigate('/login')}>Логин</Button>
     </div>
   );
