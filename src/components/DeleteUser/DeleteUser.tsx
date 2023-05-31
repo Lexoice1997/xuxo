@@ -11,7 +11,7 @@ const DeleteUser = ({ id }: { id: number }) => {
   };
 
   return (
-    <Button onClick={handleDeleteUser} style={{ marginLeft: '5px' }}>
+    <Button onClick={handleDeleteUser} style={{ marginRight: '10px' }}>
       Delete
     </Button>
   );

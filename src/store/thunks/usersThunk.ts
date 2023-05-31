@@ -56,6 +56,21 @@ export const addReferalUser = createAsyncThunk(
   }
 );
 
+export const updateStatus = createAsyncThunk(
+  'users/updateStatus',
+  async ({ customerId, status }: { customerId: number; status: string }, thunkAPI) => {
+    try {
+      const { data } = await $authHost.patch(`/admin/user`, {
+        customerId,
+        status,
+      });
+      return data.payload;
+    } catch (e) {
+      return thunkAPI.rejectWithValue('Не удалось загрузить пользователей');
+    }
+  }
+);
+
 export const updateUser = createAsyncThunk(
   'users/updateUser',
   async (

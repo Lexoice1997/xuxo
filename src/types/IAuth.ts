@@ -17,4 +17,5 @@ export interface ILoginData {
   role: string | null;
   isActive: string | null;
   created_at: string;
+  tree: number;
 }

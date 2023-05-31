@@ -62,7 +62,6 @@ function Referral() {
   const [fiftyEightAndFiftyNine, setFiftyEightAndFiftyNine] = useState<IReferralData | null>(null);
   const [sixtyAndSixtyOne, setSixtyAndSixtyOne] = useState<IReferralData | null>(null);
   const [sixtyTwoAndSixtyThree, setSixtyTwoAndSixtyThree] = useState<IReferralData | null>(null);
-
   const handleFetchTreeFourAndFive = async (id: number) => {
     const data = await dispatch(fetchTree(id));
     setFourAndFive(data.payload.payload);
@@ -215,7 +214,9 @@ function Referral() {
             valueStyle={{ color: 'white' }}
             style={{ color: 'white' }}
           />
-
+          <div>
+            {user?.first_name} {user?.last_name}
+          </div>
           <div>
             <h3>Реферальная система</h3>
             <p>Статус: {user?.status}</p>
@@ -226,7 +227,10 @@ function Referral() {
         <Tree
           label={
             <div>
-              {mainUser?.firstName} {mainUser?.lastName}
+              <div>{user?.tree}</div>
+              <div>
+                {mainUser?.firstName} {mainUser?.lastName}
+              </div>
             </div>
           }
         >

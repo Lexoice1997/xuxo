@@ -28,6 +28,7 @@ const initialState: IAuthState = {
     role: localStorage.getItem('role') ? localStorage.getItem('role') : null,
     isActive: localStorage.getItem('isActive') ? localStorage.getItem('isActive') : null,
     created_at: '',
+    tree: 0,
   },
   token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
   isUserLogin: false,

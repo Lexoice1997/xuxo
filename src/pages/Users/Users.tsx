@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/lib/table/interface';
 import { useEffect } from 'react';
 import DeleteReferal from '../../components/DeleteReferal/DeleteReferal';
 import DeleteUser from '../../components/DeleteUser/DeleteUser';
+import UpdateStatus from '../../components/UpdateStatus/UpdateStatus';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { splitNum } from '../../helpers/utils/splitNum';
 import { setUsersPage } from '../../store/slices/usersSlice';
@@ -104,18 +105,19 @@ const Users = () => {
             <ReferalContent id={record.id} />
             <ActivateContent id={record.id} active={0} action="Ban" />
           </div>
-          {/* <div style={{ display: 'flex' }}> */}
-          {/* <AdminUpdateUser
+          <div style={{ display: 'flex' }}>
+            {/* <AdminUpdateUser
               first_name={record.first_name}
               last_name={record.last_name}
               card_number={record.card_number}
               expiration_date={record.expiration_date}
             /> */}
-          <DeleteUser
-            id={record.id}
-            // referalsId={[record?.referals[0]?.referal1_id, record?.referals[0]?.referal2_id]}
-          />
-          {/* </div> */}
+            <DeleteUser
+              id={record.id}
+              // referalsId={[record?.referals[0]?.referal1_id, record?.referals[0]?.referal2_id]}
+            />
+            <UpdateStatus id={record.id} />
+          </div>
         </div>
       ),
     },
