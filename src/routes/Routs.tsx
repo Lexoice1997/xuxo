@@ -12,6 +12,7 @@ import {
   NEW_USERS_PAGE,
   PAYMENTS_PAGE,
   REFERRAL_PAGE,
+  REFERRAL_PAGE_ID,
   SERVICES_PAGE,
   SERVICE_DETAIL_PAGE,
   SIGNUP_PAGE,
@@ -31,6 +32,7 @@ import Users from '../pages/Users/Users';
 import Conclusion from '../pages/Сonclusion/Conclusion';
 import NewUsers from './../pages/NewUsers/NewUsers';
 import ServiceDetail from './../pages/ServiceDetail/ServiceDetail';
+import ReferralId from '../pages/Referral/ReferralId';
 
 function Routs() {
   return (
@@ -54,6 +56,7 @@ function Routs() {
           <Route path={CONCLUSION_PAGE} element={<Conclusion />} />
         </Route>
         <Route path={REFERRAL_PAGE} element={<Referral />} />
+        <Route path={REFERRAL_PAGE_ID} element={<ReferralId />} />
         <Route path={ACCAUNT_PAGE} element={<Accaunt />} />
       </Route>
       <Route path="*" element={<ErrorPage />} />

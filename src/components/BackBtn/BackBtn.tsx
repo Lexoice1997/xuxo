@@ -5,8 +5,13 @@ function BackBtn() {
   const navigate = useNavigate();
   return (
     <ArrowLeftOutlined
-      onClick={() => navigate('/')}
-      style={{ fontSize: '20px', color: 'rgb(202, 202, 202)', textAlign: 'left' }}
+      onClick={() => navigate(-1)}
+      style={{
+        fontSize: '20px',
+        color: 'rgb(202, 202, 202)',
+        textAlign: 'left',
+        marginRight: '20px',
+      }}
     />
   );
 }

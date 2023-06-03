@@ -16,7 +16,7 @@ export const fetchReferral = createAsyncThunk(
 
 export const fetchTree = createAsyncThunk(
   'tree/fetchTree',
-  async (id: number | undefined, thunkAPI) => {
+  async (id: string | number | undefined, thunkAPI) => {
     try {
       const { data } = await $authHost.get(`/user/referal/${id}`);
       return data;

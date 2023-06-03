@@ -3,6 +3,7 @@ export const LOGIN_PAGE = '/login';
 export const CONFIRMATION_PAGE = '/confirmation';
 export const SIGNUP_PAGE = '/signup';
 export const REFERRAL_PAGE = '/referral';
+export const REFERRAL_PAGE_ID = '/referral/:id';
 export const ACCAUNT_PAGE = '/accaunt';
 export const ADMIN_PAGE = '/admin';
 export const USERS_PAGE = `${ADMIN_PAGE}/users`;

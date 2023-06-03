@@ -1,19 +1,17 @@
 import { Statistic } from 'antd';
 import { useEffect, useState } from 'react';
 import { Tree, TreeNode } from 'react-organizational-chart';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import BackBtn from '../../components/BackBtn/BackBtn';
-import { REFERRAL_PAGE_ID } from '../../helpers/constants/constants';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
-import { fetchReferral, fetchTree } from '../../store/thunks/treeThunk';
+import { fetchTree } from '../../store/thunks/treeThunk';
 import { IReferralData } from '../../types/ITree';
 import styles from './Referral.module.scss';
 
-function Referral() {
+function ReferralId() {
+  const { id } = useParams();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.authReducer);
-  const { tree } = useAppSelector((state) => state.treeReducer);
   const [mainUser, setMainUser] = useState<any>();
   const [secondAndThird, setSecondAndThird] = useState<IReferralData | null>(null);
   const [fourAndFive, setFourAndFive] = useState<IReferralData | null>(null);
@@ -208,47 +206,20 @@ function Referral() {
   };
 
   const hanldeFetchLastTree = async (id: number) => {
-    // const data = await dispatch(fetchTree(id));
-    // const { customer } = data.payload.payload;
-    // setMainUser({ firstName: customer.first_name, lastName: customer.last_name });
-    // setSecondAndThird(data.payload.payload);
-    navigate(`${id}`);
-    // setFourAndFive(null);
-    // setSixAndSeven(null);
-    // setEightAndNine(null);
-    // setTenAndEleven(null);
-    // setTwelveAndThirteen(null);
-    // setFourteenAndFifteen(null);
-    // setSixteenAndSeventeen(null);
-    // setEighTeenAndNineteen(null);
-    // setTwentyAndTwentyOne(null);
-    // setTwentyTwoAndTwentyThree(null);
-    // setTwentyFourAndTwentyFive(null);
-    // setTwentySixAndTwentySeven(null);
-    // setTwentyEightAndTwentyNine(null);
-    // setThirtyAndThirtyOne(null);
-    // setThirtyTwoAndThirtyThree(null);
-    // setThirtyFourAndThirtyFive(null);
-    // setThirtySixThirtySeven(null);
-    // setThirtyEightThirtyNine(null);
-    // setFourtyAndFourtyOne(null);
-    // setFourtyTwoAndFourtyThree(null);
-    // setFourtyFourAndFourtyFive(null);
-    // setFourtySixAndFourtySeven(null);
-    // setFourtyEightAndFourtyNine(null);
-    // setFiftyAndFiftyOne(null);
-    // setFiftyTwoAndFiftyThree(null);
-    // setFiftyFourAndFiftyFive(null);
-    // setFiftySixAndFiftySeven(null);
-    // setFiftyEightAndFiftyNine(null);
-    // setSixtyAndSixtyOne(null);
-    // setSixtyTwoAndSixtyThree(null);
+    const data = await dispatch(fetchTree(id));
+    const { customer } = data.payload.payload;
+    setMainUser({ firstName: customer.first_name, lastName: customer.last_name });
+    setSecondAndThird(data.payload.payload);
+  };
+
+  const handleMainUser = async () => {
+    const data = await dispatch(fetchTree(id));
+    setMainUser(data.payload.payload);
   };
 
   useEffect(() => {
-    dispatch(fetchReferral());
-    setMainUser({ firstName: user.first_name, lastName: user.last_name });
-  }, [dispatch, user.first_name, user.id, user.last_name]);
+    handleMainUser();
+  }, [dispatch]);
 
   return (
     <div id="treeWrapper" className={styles.referral}>
@@ -275,9 +246,11 @@ function Referral() {
         <Tree
           label={
             <div>
-              <div>{user?.tree}</div>
-              <div onClick={() => handleFetchTreeSecondAndThird(user?.id)}>
-                {mainUser?.firstName} {mainUser?.lastName}
+              <div>
+                <BackBtn /> {user?.tree}
+              </div>
+              <div onClick={() => handleFetchTreeSecondAndThird(mainUser?.customerId)}>
+                {mainUser?.customer.first_name} {mainUser?.customer.last_name}
               </div>
             </div>
           }
@@ -1170,4 +1143,4 @@ function Referral() {
   );
 }
 
-export default Referral;
+export default ReferralId;
