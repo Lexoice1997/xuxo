@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Tree, TreeNode } from 'react-organizational-chart';
 import { useNavigate } from 'react-router-dom';
 import BackBtn from '../../components/BackBtn/BackBtn';
-import { REFERRAL_PAGE_ID } from '../../helpers/constants/constants';
 import { useAppDispatch, useAppSelector } from '../../helpers/hooks/redux';
 import { fetchReferral, fetchTree } from '../../store/thunks/treeThunk';
 import { IReferralData } from '../../types/ITree';
@@ -13,7 +12,6 @@ function Referral() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.authReducer);
-  const { tree } = useAppSelector((state) => state.treeReducer);
   const [mainUser, setMainUser] = useState<any>();
   const [secondAndThird, setSecondAndThird] = useState<IReferralData | null>(null);
   const [fourAndFive, setFourAndFive] = useState<IReferralData | null>(null);

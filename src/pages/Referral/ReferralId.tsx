@@ -219,7 +219,7 @@ function ReferralId() {
 
   useEffect(() => {
     handleMainUser();
-  }, [dispatch]);
+  }, [dispatch, handleMainUser]);
 
   return (
     <div id="treeWrapper" className={styles.referral}>
