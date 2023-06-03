@@ -212,6 +212,7 @@ function ReferralId() {
     setSecondAndThird(data.payload.payload);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleMainUser = async () => {
     const data = await dispatch(fetchTree(id));
     setMainUser(data.payload.payload);
